@@ -4,7 +4,23 @@ const fs = require("fs");
  const teamMembers = [];
 
  //add inquirer for adding new employee
+function addTeam() {
+    inquirer.prompt ([
+        {
+            type:"confirm",
+            name: "addNewTeam",
+            message: "Would you like to create a new Team?",
+        },
 
+    ]).then((data) => {
+        console.log(data.addNewTeam);
+        // if (!addNewTeam) {
+        //     return ("You have chosen to NOT create a new team...");
+        // } else ("You have chosen to create a new Team. Lets begin with filling out the Team Managers Profile")
+        // addManager();
+    });
+}
+addTeam();
 function addManager() {
 
     inquirer.prompt ([
@@ -58,7 +74,7 @@ function addEngineer() {
             message: "What is the Engineer's Email Address?"
         }
     ]).then((data) => {
-        const engineer = new Manager(data.engineerName, data.engineerID, data.engineerOfficeNum, data.engineerEmail);
+        const engineer = new Manager(data.engineerName, data.engineerID, data.engineerGithub, data.engineerEmail);
         teamMembers.push(engineer);
 
     });
@@ -87,7 +103,7 @@ function addIntern() {
             message: "What is the intern's Email Address?"
         }
     ]).then((data) => {
-        const intern = new Manager(data.internName, data.internID, data.internOfficeNum, data.internEmail);
+        const intern = new Manager(data.internName, data.internID, data.internSchool, data.internEmail);
         teamMembers.push(intern);
 
     });
