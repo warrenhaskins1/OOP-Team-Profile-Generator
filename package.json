@@ -2,7 +2,16 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.0.0-beta3",
     "bootstrap-icons": "^1.7.2",
-    "inquirer": "^8.2.0",
+    "inquirer": "^8.2.0"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
     "jest": "^27.4.7"
-  }
+  },
+  "moduleDirectories": [
+    "node_modules",
+    "lib"
+]
 }

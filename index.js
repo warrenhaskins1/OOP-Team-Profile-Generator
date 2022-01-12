@@ -1,7 +1,12 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
+const Manager = require("./lib/Manager");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
 
  const teamMembers = [];
+
+ //We need a function to start the Team build. Manager must be one of the selections
 
  //add inquirer for adding new employee
 function addTeam() {
@@ -14,20 +19,21 @@ function addTeam() {
 
     ]).then((data) => {
         console.log(data.addNewTeam);
-        // if (!addNewTeam) {
-        //     return ("You have chosen to NOT create a new team...");
-        // } else ("You have chosen to create a new Team. Lets begin with filling out the Team Managers Profile")
-        // addManager();
+        if (data.addNewTeam === true) {
+            addManager();
+        }
     });
 }
 addTeam();
+
+//function to add Manager (required)
 function addManager() {
 
     inquirer.prompt ([
         {
             type: "input",
             name: "managerName",
-            message: "What is the Manager's name?"
+            message: "Every Team must start with a Manager. What is the Manager's name?"
         },
         {
             type: "input",
@@ -45,12 +51,36 @@ function addManager() {
             message: "What is the Manager's Email Address?"
         }
     ]).then((data) => {
+        console.log(data.managerName, data.managerID, data.managerOfficeNum, data.managerEmail)
         const manager = new Manager(data.managerName, data.managerID, data.managerOfficeNum, data.managerEmail);
         teamMembers.push(manager);
 
     });
 }
 
+//After user has selected the Manager first we can choose to add Engineers or Interns or be finished with Team Building.
+function addNewTeamMember() {
+    inquirer.prompt([
+        {
+            type: "list",
+            name: "addNewTeamMember",
+            message: "Choose which employee role you would like to add to the Team:",
+            choices: ["Engineer", "Intern", "Finish building the Team"]
+        }
+]).then((data) => {
+    switch(data.addNewTeamMember) {
+        case "Engineer":
+            addEngineer();
+            break;
+            case "Intern":
+                addIntern();
+                break;
+                case "Finish building the Team":
+                    //need function to build html
+    }
+})
+}
+//function to add engineer
 function addEngineer() {
     inquirer.prompt ([
         {
@@ -74,12 +104,13 @@ function addEngineer() {
             message: "What is the Engineer's Email Address?"
         }
     ]).then((data) => {
-        const engineer = new Manager(data.engineerName, data.engineerID, data.engineerGithub, data.engineerEmail);
+        const engineer = new Engineer(data.engineerName, data.engineerID, data.engineerGithub, data.engineerEmail);
         teamMembers.push(engineer);
 
     });
 }
 
+// function to add intern
 function addIntern() {
     inquirer.prompt ([
         {
@@ -103,7 +134,7 @@ function addIntern() {
             message: "What is the intern's Email Address?"
         }
     ]).then((data) => {
-        const intern = new Manager(data.internName, data.internID, data.internSchool, data.internEmail);
+        const intern = new Intern(data.internName, data.internID, data.internSchool, data.internEmail);
         teamMembers.push(intern);
 
     });
