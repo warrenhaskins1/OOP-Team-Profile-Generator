@@ -36,38 +36,39 @@ function addManager() {
     .prompt([
       {
         type: "input",
-        name: "managerName",
+        name: "name",
         message:
           "Every Team must start with a Manager. What is the Manager's name?",
       },
       {
         type: "input",
-        name: "managerID",
+        name: "id",
         message: "What is the Managers ID #?",
       },
       {
         type: "input",
-        name: "managerOfficeNum",
-        message: "What is the Manager's Office #?",
+        name: "email",
+        message: "What is the Manager's Email Address?",
       },
       {
         type: "input",
-        name: "managerEmail",
-        message: "What is the Manager's Email Address?",
+        name: "officeNumber",
+        message: "What is the Manager's Office #?",
       },
+      
     ])
     .then((data) => {
       console.log(
-        data.managerName,
-        data.managerID,
-        data.managerOfficeNum,
-        data.managerEmail
+        data.name,
+        data.id,
+        data.email,
+        data.officeNumber
       );
       const manager = new Manager(
-        data.managerName,
-        data.managerID,
-        data.managerOfficeNum,
-        data.managerEmail
+        data.name,
+        data.id,
+        data.email,
+        data.officeNumber,
       );
       teamMembers.push(manager);
       addNewTeamMember();
@@ -116,21 +117,22 @@ function addEngineer() {
       },
       {
         type: "input",
-        name: "engineerGithub",
-        message: "What is the Engineer's GitHub name?",
-      },
-      {
-        type: "input",
         name: "engineerEmail",
         message: "What is the Engineer's Email Address?",
       },
+      {
+        type: "input",
+        name: "engineerGithub",
+        message: "What is the Engineer's GitHub name?",
+      },
+      
     ])
     .then((data) => {
       const engineer = new Engineer(
         data.engineerName,
         data.engineerID,
-        data.engineerGithub,
-        data.engineerEmail
+        data.engineerEmail,
+        data.engineerGithub
       );
       teamMembers.push(engineer);
       addNewTeamMember();
@@ -153,21 +155,23 @@ function addIntern() {
       },
       {
         type: "input",
-        name: "internSchool",
-        message: "What is the intern's School name?",
-      },
-      {
-        type: "input",
         name: "internEmail",
         message: "What is the intern's Email Address?",
       },
+      {
+        type: "input",
+        name: "internSchool",
+        message: "What is the intern's School name?",
+      },
+     
     ])
     .then((data) => {
       const intern = new Intern(
         data.internName,
         data.internID,
-        data.internSchool,
-        data.internEmail
+        data.internEmail,
+        data.internSchool
+        
       );
       teamMembers.push(intern);
       addNewTeamMember();

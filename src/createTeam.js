@@ -10,7 +10,7 @@ const createTeam = (team) => {
         <div class="card mx-4 shadow" style="width: 18rem;">
             <div class="card-header">
                 <h4 class="card-title">${manager.getName()}</h2>
-                    <h5 class="card-title">${manager.getRole()}<i class="bi bi-megaphone"></i></h3>
+                    <h5 class="card-title">${manager.getRole()} <i class="bi bi-megaphone"></i></h3>
             </div>
             <div class="card-body">
                 <ul class="list-group list-group-flush">
