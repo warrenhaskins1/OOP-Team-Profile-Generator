@@ -1,10 +1,10 @@
 const Manager = require("../lib/Manager");
 
-describe("Employee", () => {
+describe("Manager", () => {
   describe("Initialization", () => {
-    it("Creates a new Employee object with an id #", () => {
-      const manager = new Manager(3);
-      expect(manager.id).toEqual(3);
+    it("Creates a new Manager object with a name", () => {
+      const manager = new Manager("Burt");
+      expect(manager.name).toEqual("Burt");
     });
   });
 });

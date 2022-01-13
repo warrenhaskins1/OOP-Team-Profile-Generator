@@ -1,10 +1,10 @@
 const Intern = require("../lib/Intern");
 
-describe("Employee", () => {
+describe("Intern", () => {
   describe("Initialization", () => {
-    it("Creates a new Employee object with an id #", () => {
-      const intern = new Intern(4);
-      expect(intern.id).toEqual(4);
+    it("Creates a new Intern object with a school", () => {
+      const intern = new Intern("Bill", 4, "test@test.com", "UoHK");
+      expect(intern.school).toEqual("UoHK");
     });
   });
 });

@@ -4,7 +4,7 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const createTeam = require("./src/createTeam.js");
-const fileName = "index.html";
+
 
 const teamMembers = [];
 
@@ -22,13 +22,12 @@ function addTeam() {
       },
     ])
     .then((data) => {
-      console.log(data.addNewTeam);
+      // console.log(data.addNewTeam);
       if (data.addNewTeam === true) {
         addManager();
       }
     });
 }
-
 
 //function to add Manager (required)
 function addManager() {
@@ -55,20 +54,14 @@ function addManager() {
         name: "officeNumber",
         message: "What is the Manager's Office #?",
       },
-      
     ])
     .then((data) => {
-      console.log(
-        data.name,
-        data.id,
-        data.email,
-        data.officeNumber
-      );
+      // console.log(data.name, data.id, data.email, data.officeNumber);
       const manager = new Manager(
         data.name,
         data.id,
         data.email,
-        data.officeNumber,
+        data.officeNumber
       );
       teamMembers.push(manager);
       addNewTeamMember();
@@ -96,7 +89,7 @@ function addNewTeamMember() {
           addIntern();
           break;
         case "Finish building the Team":
-            createTeamPage();
+          createTeamPage();
           break;
       }
     });
@@ -125,7 +118,6 @@ function addEngineer() {
         name: "engineerGithub",
         message: "What is the Engineer's GitHub name?",
       },
-      
     ])
     .then((data) => {
       const engineer = new Engineer(
@@ -163,7 +155,6 @@ function addIntern() {
         name: "internSchool",
         message: "What is the intern's School name?",
       },
-     
     ])
     .then((data) => {
       const intern = new Intern(
@@ -171,32 +162,18 @@ function addIntern() {
         data.internID,
         data.internEmail,
         data.internSchool
-        
       );
       teamMembers.push(intern);
       addNewTeamMember();
     });
 }
 
-function writeToFile(fileName, data) {
-    const index = createTeam(data);
-    fs.writeFile(fileName, index, (err) =>
-      err
-        ? console.log(err)
-        : console.log(
-            "Excelsior! You have just created a professional README.md file!"
-          )
-    );
-  }
-  
-  
 function createTeamPage() {
-    console.log("Congrats")
-    fs.writeFile("./dist/index.html", createTeam(teamMembers), (err) => {
-        err
-        ? console.log(err)
-        : console.log(
-            "Excelsior! You have just created a professional README.md file!"
-          )
-    })
+  fs.writeFile("./dist/index.html", createTeam(teamMembers), (err) => {
+    err
+      ? console.log(err)
+      : console.log(
+          "Excelsior! You have just created a professional Team Profile Page!"
+        );
+  });
 }
