@@ -3,12 +3,15 @@ const fs = require("fs");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-const createTeam = require("")
+const createTeam = require("./src/createTeam.js");
+const fileName = "index.html";
+
 const teamMembers = [];
 
 //We need a function to start the Team build. Manager must be one of the selections
 
 //add inquirer for adding new employee
+addTeam();
 function addTeam() {
   inquirer
     .prompt([
@@ -25,7 +28,7 @@ function addTeam() {
       }
     });
 }
-addTeam();
+
 
 //function to add Manager (required)
 function addManager() {
@@ -67,6 +70,7 @@ function addManager() {
         data.managerEmail
       );
       teamMembers.push(manager);
+      addNewTeamMember();
     });
 }
 
@@ -91,6 +95,7 @@ function addNewTeamMember() {
           addIntern();
           break;
         case "Finish building the Team":
+            createTeamPage();
           break;
       }
     });
@@ -128,6 +133,7 @@ function addEngineer() {
         data.engineerEmail
       );
       teamMembers.push(engineer);
+      addNewTeamMember();
     });
 }
 
@@ -164,5 +170,29 @@ function addIntern() {
         data.internEmail
       );
       teamMembers.push(intern);
+      addNewTeamMember();
     });
+}
+
+function writeToFile(fileName, data) {
+    const index = createTeam(data);
+    fs.writeFile(fileName, index, (err) =>
+      err
+        ? console.log(err)
+        : console.log(
+            "Excelsior! You have just created a professional README.md file!"
+          )
+    );
+  }
+  
+  
+function createTeamPage() {
+    console.log("Congrats")
+    fs.writeFile("./dist/index.html", createTeam(teamMembers), (err) => {
+        err
+        ? console.log(err)
+        : console.log(
+            "Excelsior! You have just created a professional README.md file!"
+          )
+    })
 }
